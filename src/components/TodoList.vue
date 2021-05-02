@@ -6,14 +6,14 @@
         <form id="task-form">
           <div class="main-section" v-if="!isEditing">
             <div class="input-field">
-              <input type="text" id="task" v-model="todo"/>
+              <input type="text" id="task" v-model="todo" />
             </div>
             <div class="btn-center">
               <input
                 type="submit"
                 value="Add Task"
                 class="btn"
-                @click.prevent="storeTodo" 
+                @click.prevent="storeTodo"
               />
             </div>
           </div>
@@ -69,14 +69,18 @@ export default {
       isEditing: false,
       selectedIndex: null,
       todo: "",
-      todos: ["Akram Sheikh", "Rabbi", "Nasim Uddin",'Nasir Uddin'],
+      todos: ["Akram Sheikh", "Rabbi", "Nasim Uddin", "Nasir Uddin"],
       filtersTodo: "",
     };
   },
   methods: {
     storeTodo() {
-      this.todos.push(this.todo);
-      this.todo = "";
+      if (this.todo === "") {
+        alert("Pleace Enter Todo List");
+      } else {
+        this.todos.push(this.todo);
+        this.todo = "";
+      }
     },
     editTodo(index, todo) {
       this.todo = todo;
@@ -85,7 +89,9 @@ export default {
     },
     deleteTodo(index) {
       // this.todos.splice(index, 1);
-      this.todos.splice(this.todos.indexOf(index), 1);
+      if (this.todos.splice(this.todos.indexOf(index), 1)) {
+        alert("Are You Sure?");
+      }
     },
     upDateTodo() {
       this.todos.splice(this.selectedIndex, 1, this.todo);
@@ -96,8 +102,8 @@ export default {
       this.todos.splice(0);
     },
     // showAlert() {
-    //     // alert("Pleace Enter Your Todo List");
-    //     console.log('Hello world')
+    //   if(this.todo === '')
+    //     alert("Pleace Enter Your Todo List Name");
     // },
   },
   computed: {
