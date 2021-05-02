@@ -89,8 +89,8 @@ export default {
     },
     deleteTodo(index) {
       // this.todos.splice(index, 1);
-      if (this.todos.splice(this.todos.indexOf(index), 1)) {
-        alert("Are You Sure?");
+      if(confirm("Are You Sure?")) {
+        this.todos.splice(this.todos.indexOf(index), 1)
       }
     },
     upDateTodo() {
